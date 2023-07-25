@@ -14,7 +14,6 @@ class ToDoService {
         return notes;
     }
 
-
     fun addToDo(note: Note) {
         note.id = Random.nextInt()
 
