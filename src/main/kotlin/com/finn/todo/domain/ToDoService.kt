@@ -13,18 +13,20 @@ class ToDoService {
         return notes;
     }
 
-    fun addToDo(note: Note) {
+    fun addToDo(note: Note): Note {
         note.id = Random.nextInt()
-
         notes.add(note)
+
+        return note
     }
 
     fun getToDoByID(id: Int): Note? {
-        return notes.filter {it.id == id }.firstOrNull();
+        return notes.firstOrNull { it.id == id };
     }
 
-    fun checkToDo(note: Note) {
+    fun checkToDo(note: Note): Note {
         note.checked = !note.checked
+        return note
     }
 
     fun removeToDo(note: Note) {
