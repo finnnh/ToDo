@@ -43,11 +43,20 @@ class ToDoController(val toDoService: ToDoService) {
 
     @PutMapping("{id}")
     fun checkToDo(@PathVariable id: Int) {
-        toDoService.checkToDo(id)
+        val note = toDoService.getToDoByID(id)
+        if(note != null) {
+            toDoService.checkToDo(note)
+        }
+        throw ResponseStatusException(HttpStatus.NOT_FOUND, "ToDo not found");
     }
 
     @DeleteMapping("{id}")
     fun deleteToDo(@PathVariable id: Int) {
-        toDoService.removeToDo(id)
+        val note = toDoService.getToDoByID(id);
+        if(note != null) {
+            toDoService.removeToDo(note);
+        }
+
+        throw ResponseStatusException(HttpStatus.NOT_FOUND, "ToDo not found")
     }
 }

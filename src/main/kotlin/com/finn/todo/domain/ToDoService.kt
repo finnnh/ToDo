@@ -23,16 +23,12 @@ class ToDoService {
         return notes.filter {it.id == id }.firstOrNull();
     }
 
-    fun checkToDo(id: Int) {
-        val note = getToDoByID(id)
-
-        if (note != null) {
-            note.checked = !note.checked
-        }
+    fun checkToDo(note: Note) {
+        note.checked = !note.checked
     }
 
-    fun removeToDo(id: Int) {
-        notes.remove(getToDoByID(id));
+    fun removeToDo(note: Note) {
+        notes.remove(note);
     }
 
 }
