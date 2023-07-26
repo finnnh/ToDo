@@ -2,7 +2,6 @@ package com.finn.todo.domain
 
 import com.finn.todo.domain.models.Note
 import org.springframework.stereotype.Service
-import kotlin.random.Random
 
 @Service
 class ToDoService {
@@ -14,9 +13,7 @@ class ToDoService {
     }
 
     fun addToDo(note: Note): Note {
-        note.id = Random.nextInt()
         notes.add(note)
-
         return note
     }
 
