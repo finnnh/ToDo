@@ -1,9 +1,8 @@
-package com.finn.todo
+package com.finn.todo.domain
 
+import com.finn.todo.domain.models.Note
 import org.springframework.stereotype.Service
 import kotlin.random.Random
-
-data class Note(var id: Int, val content: String, val description: String, var checked: Boolean)
 
 @Service
 class ToDoService {
@@ -20,13 +19,16 @@ class ToDoService {
         notes.add(note)
     }
 
-    fun getToDoByID(id: Int): Note {
-        return notes.filter {it.id == id }.first()
+    fun getToDoByID(id: Int): Note? {
+        return notes.filter {it.id == id }.firstOrNull();
     }
 
     fun checkToDo(id: Int) {
         val note = getToDoByID(id)
-        note.checked = !note.checked
+
+        if (note != null) {
+            note.checked = !note.checked
+        }
     }
 
     fun removeToDo(id: Int) {

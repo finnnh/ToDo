@@ -1,3 +1,13 @@
-package com.finn.todo.domain.models
+package com.finn.todo.api.dtos
 
-data class Note(var id: Int, val content: String, val description: String, var checked: Boolean)
+import com.finn.todo.domain.models.Note
+
+data class NoteResponse(var id: Int, val content: String, val description: String, var checked: Boolean) {
+
+    companion object {
+        fun Note.toDTO(): NoteResponse {
+            return NoteResponse(this.id, this.content, this.description, this.checked)
+        }
+    }
+
+}
