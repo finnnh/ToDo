@@ -1,14 +1,14 @@
-name: Super-Linter
+name: ToDo Pipeline
 
 on: push
 
 jobs:
-  super-lint:
+  ci-pipeline:
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run Echo
-        run: echo "Hello World"
+      - name: Gradle Build
+        run: ./gradlew build
