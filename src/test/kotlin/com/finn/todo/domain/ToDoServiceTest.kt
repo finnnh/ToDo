@@ -21,7 +21,7 @@ class ToDoServiceTest {
     }
 
     @Test
-    fun `addMultipleTodoWithSameID() Should throw a NotFoundException`() {
+    fun `addMultipleTodoWithSameID() Should throw a AlreadyExistsException`() {
         // given
         val toDoService = ToDoService()
         val note1 = Note(1, "", "", false)
