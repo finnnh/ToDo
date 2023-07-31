@@ -8,16 +8,15 @@ import com.finn.todo.api.dtos.NoteResponse
 import com.finn.todo.domain.ToDoService
 import com.finn.todo.domain.exceptions.AlreadyExistsException
 import com.finn.todo.domain.models.Note
-import io.mockk.every
-import org.junit.jupiter.api.Test
-
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import com.ninjasquad.springmockk.MockkBean
+import io.mockk.every
 import io.mockk.just
 import io.mockk.runs
 import io.mockk.verify
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -26,7 +25,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPat
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @WebMvcTest
-class ToDoControllerTest(@Autowired val  mockMvc: MockMvc) {
+class ToDoControllerTest(@Autowired val mockMvc: MockMvc) {
 
     @MockkBean
     lateinit var toDoService: ToDoService
@@ -40,7 +39,6 @@ class ToDoControllerTest(@Autowired val  mockMvc: MockMvc) {
             .andExpect(status().isOk)
             .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("id").value(1))
-
     }
 
     @Test
@@ -77,11 +75,12 @@ class ToDoControllerTest(@Autowired val  mockMvc: MockMvc) {
 
         val requestJson = writer.writeValueAsString(note)
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(requestJson))
+        mockMvc.perform(
+            MockMvcRequestBuilders.post("/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson)
+        )
             .andExpect(status().isCreated)
-
     }
 
     @Test
@@ -95,9 +94,11 @@ class ToDoControllerTest(@Autowired val  mockMvc: MockMvc) {
 
         val requestJson = writer.writeValueAsString(note)
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(requestJson))
+        mockMvc.perform(
+            MockMvcRequestBuilders.post("/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson)
+        )
             .andExpect(status().isConflict)
     }
 
@@ -119,7 +120,6 @@ class ToDoControllerTest(@Autowired val  mockMvc: MockMvc) {
 
     @Test
     fun `removeToDo() Should remove the ToDo`() {
-
         every { toDoService.removeToDo(1) } just runs
 
         every { toDoService.getToDoByID(1) } returns Note(1, "", "", false)
@@ -129,7 +129,5 @@ class ToDoControllerTest(@Autowired val  mockMvc: MockMvc) {
         verify {
             toDoService.removeToDo(1)
         }
-
     }
-
 }

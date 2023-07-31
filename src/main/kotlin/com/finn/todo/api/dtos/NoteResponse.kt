@@ -9,5 +9,4 @@ data class NoteResponse(var id: Int, val content: String, val description: Strin
             return NoteResponse(this.id, this.content, this.description, this.checked)
         }
     }
-
 }

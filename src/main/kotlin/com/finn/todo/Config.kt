@@ -1,6 +1,5 @@
 package com.finn.todo
 
-import com.finn.todo.domain.ToDoService
 import com.finn.todo.domain.models.Note
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -24,7 +23,4 @@ class Config {
             return ToDoService()
         }
     */
-
-
-
 }

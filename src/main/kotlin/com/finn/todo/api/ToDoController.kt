@@ -26,7 +26,7 @@ class ToDoController(val toDoService: ToDoService) {
 
     @GetMapping("")
     fun getAllToDO(): List<NoteResponse> {
-        return toDoService.getAllToDo().map { note -> note.toResponseDTO() };
+        return toDoService.getAllToDo().map { note -> note.toResponseDTO() }
     }
 
     @PostMapping("")
@@ -46,16 +46,15 @@ class ToDoController(val toDoService: ToDoService) {
 
     @PutMapping("{id}")
     fun checkToDo(@PathVariable id: Int): NoteResponse {
-        val note = toDoService.getToDoByID(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "ToDo not found");
+        val note = toDoService.getToDoByID(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "ToDo not found")
 
         return toDoService.checkToDo(id).toResponseDTO()
     }
 
     @DeleteMapping("{id}")
     fun removeToDo(@PathVariable id: Int) {
-        val note = toDoService.getToDoByID(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "ToDo not found");
+        val note = toDoService.getToDoByID(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "ToDo not found")
 
         toDoService.removeToDo(id)
     }
-
 }

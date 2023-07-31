@@ -56,7 +56,7 @@ class ToDoServiceTest {
         // when
         val result = toDoService.getToDoByID(1)
 
-        //then
+        // then
         Assertions.assertThat(result).isNull()
     }
 
@@ -93,10 +93,10 @@ class ToDoServiceTest {
         val toDoService = ToDoService()
         toDoService.addToDo(Note(1, "C", "Decs", false))
         val note = toDoService.getToDoByID(1)
-        note?.let { toDoService.checkToDo(note.id) };
+        note?.let { toDoService.checkToDo(note.id) }
 
         // when
-        val result = note?.let { toDoService.checkToDo(note.id) };
+        val result = note?.let { toDoService.checkToDo(note.id) }
 
         // then
         Assertions.assertThat(result!!.checked).isEqualTo(false)
@@ -148,9 +148,8 @@ class ToDoServiceTest {
 
         // then
         assertThrows<NotExistException> {
-           // when
+            // when
             toDoService.removeToDo(1)
         }
     }
-
 }

@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service
 @Service
 class ToDoService() {
 
-    private final val notes = mutableListOf<Note>();
+    private final val notes = mutableListOf<Note>()
 
     fun getAllToDo(): List<Note> {
-        return notes;
+        return notes
     }
 
     fun addToDo(note: Note): Note {
-        if(getToDoByID(note.id) != null) throw AlreadyExistsException();
+        if (getToDoByID(note.id) != null) throw AlreadyExistsException()
 
         notes.add(note)
         return note
@@ -33,7 +33,6 @@ class ToDoService() {
 
     fun removeToDo(id: Int) {
         val note = getToDoByID(id) ?: throw NotExistException()
-        notes.remove(note);
+        notes.remove(note)
     }
-
 }

@@ -9,9 +9,8 @@ data class NoteCreation(var id: Int, val content: String, val description: Strin
             return NoteCreation(this.id, this.content, this.description, this.checked)
         }
 
-        fun NoteCreation.toNote(): Note{
+        fun NoteCreation.toNote(): Note {
             return Note(this.id, this.content, this.description, this.checked)
         }
     }
-
 }
