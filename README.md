@@ -1,3 +1,5 @@
+![Logo](todo_logo.png)
+
 # To-Do Application
 
 This is an API created with Springboot in Kotlin, that I did during a 2 Week Intership. The application creates and stores To-Do's
